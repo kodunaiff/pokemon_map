@@ -20,6 +20,3 @@ class PokemonEntity(models.Model):
     strength = models.IntegerField('Атака')
     defence = models.IntegerField('Защита')
     stamina = models.IntegerField('Выносливость')
-
-
-
