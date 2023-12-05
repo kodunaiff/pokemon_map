@@ -65,10 +65,15 @@ def show_pokemon(request, pokemon_id):
         'pokemon_id': pokemon_id.id,
         'img_url': pokemon_id.image.url,
         'title_ru': pokemon_id.title,
+        'description': pokemon_id.description,
     }
 
     folium_map = folium.Map(location=MOSCOW_CENTER, zoom_start=12)
-    for pokemon_entity in PokemonEntity.objects.filter(pokemon=pokemon_id):
+
+    for pokemon_entity in PokemonEntity.objects.filter(
+            pokemon=pokemon_id, appeared_at__lt=timezone.now(),
+            disappeared_at__gt=timezone.now()
+    ):
         add_pokemon(
             folium_map, pokemon_entity.lat,
             pokemon_entity.lon,
