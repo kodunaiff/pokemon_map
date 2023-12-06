@@ -78,6 +78,14 @@ def show_pokemon(request, pokemon_id):
         }
         pokemon_on_page['previous_evolution'] = previous_evolution
 
+    if pokemon_id.next_evolution.first():
+        next_evolution = {
+            "title_ru": pokemon_id.next_evolution.first().title,
+            "pokemon_id": pokemon_id.next_evolution.first().id,
+            "img_url": pokemon_id.next_evolution.first().image.url
+        }
+        pokemon_on_page['next_evolution'] = next_evolution
+
     folium_map = folium.Map(location=MOSCOW_CENTER, zoom_start=12)
 
     for pokemon_entity in PokemonEntity.objects.filter(
