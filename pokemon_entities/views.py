@@ -78,11 +78,11 @@ def show_pokemon(request, pokemon_id):
         }
         pokemon_on_page['previous_evolution'] = previous_evolution
 
-    if pokemon_id.next_evolution.first():
+    if pokemon_id.next_evolutions.first():
         next_evolution = {
-            "title_ru": pokemon_id.next_evolution.first().title,
-            "pokemon_id": pokemon_id.next_evolution.first().id,
-            "img_url": pokemon_id.next_evolution.first().image.url
+            "title_ru": pokemon_id.next_evolutions.first().title,
+            "pokemon_id": pokemon_id.next_evolutions.first().id,
+            "img_url": pokemon_id.next_evolutions.first().image.url
         }
         pokemon_on_page['next_evolution'] = next_evolution
 
