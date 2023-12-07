@@ -62,7 +62,6 @@ def show_pokemon(request, pokemon_id):
         'title_en': pokemon.title_en,
         'title_jp': pokemon.title_jp,
     }
-
     if pokemon.previous_evolution:
         previous_evolution = {
             "title_ru": pokemon.previous_evolution.title,
@@ -70,12 +69,12 @@ def show_pokemon(request, pokemon_id):
             "img_url": pokemon.previous_evolution.image.url,
         }
         pokemon_on_page['previous_evolution'] = previous_evolution
-
-    if pokemon.next_evolutions.first():
+    next_pokemon = pokemon.next_evolutions.first()
+    if next_pokemon:
         next_evolution = {
-            "title_ru": pokemon.next_evolutions.first().title,
-            "pokemon_id": pokemon.next_evolutions.first().id,
-            "img_url": pokemon.next_evolutions.first().image.url
+            "title_ru": next_pokemon.title,
+            "pokemon_id": next_pokemon.id,
+            "img_url": next_pokemon.image.url
         }
         pokemon_on_page['next_evolution'] = next_evolution
 
